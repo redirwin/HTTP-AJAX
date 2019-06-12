@@ -8,17 +8,19 @@ import "./App.scss";
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      // formInput: ""
-    };
+    this.state = {};
   }
 
   inputChangeHandler = e => {
     e.preventDefault();
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
+  };
+
+  addFriend = e => {
+    e.preventDefault();
+    console.log("In Add Friend method!");
   };
 
   render() {
