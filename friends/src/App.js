@@ -9,12 +9,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      formInput: ""
+      // formInput: ""
     };
   }
 
   inputChangeHandler = e => {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });

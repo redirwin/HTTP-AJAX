@@ -1,20 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class AddFriends extends React.Component {
-  render() {
-    return (
-      <>
-        <Link to="/">Home</Link>
-        <form classname="friend-input-form">
-          <input type="text" placeholder="name" name="nameInput" />
-          <input type="text" placeholder="age" name="ageInput" />
-          <input type="text" placeholder="email address" name="emailInput" />
-          <button>Add New Friend</button>
-        </form>
-      </>
-    );
-  }
-}
+const AddFriends = props => {
+  //   console.log(props);
+  return (
+    <>
+      <Link to="/">Home</Link>
+      <form className="friend-input-form">
+        <input
+          type="text"
+          placeholder="name"
+          name="nameInput"
+          onChange={event => props.inputChangeHandler(event)}
+        />
+        <input
+          type="text"
+          placeholder="age"
+          name="ageInput"
+          onChange={event => props.inputChangeHandler(event)}
+        />
+        <input
+          type="text"
+          placeholder="email address"
+          name="emailInput"
+          onChange={event => props.inputChangeHandler(event)}
+        />
+        <button>Add New Friend</button>
+      </form>
+    </>
+  );
+};
 
 export default AddFriends;
