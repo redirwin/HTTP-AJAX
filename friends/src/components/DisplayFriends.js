@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
   constructor(props) {
@@ -22,16 +23,20 @@ class DisplayFriends extends React.Component {
 
   render() {
     console.log(this.state.friends);
+
     return (
-      <div className="friends-list">
-        {this.state.friends.map(friend => (
-          <div key={friend.id} className="friend-card">
-            <h2>{friend.name}</h2>
-            <p>age: {friend.age}</p>
-            <p>email: {friend.email}</p>
-          </div>
-        ))}
-      </div>
+      <>
+        <Link to="/addfriend">Add Friend</Link>
+        <div className="friends-list">
+          {this.state.friends.map(friend => (
+            <div key={friend.id} className="friend-card">
+              <h2>{friend.name}</h2>
+              <p>age: {friend.age}</p>
+              <p>email: {friend.email}</p>
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
 }
