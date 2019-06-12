@@ -1,3 +1,24 @@
 .App {
   text-align: center;
+  min-width: 250px;
+
+  .friends-list {
+    // border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .friend-card {
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+      margin: 5%;
+      box-shadow: 10px 10px 17px -12px rgba(0, 0, 0, 0.75);
+
+      p {
+        line-height: 0.75;
+      }
+    }
+  }
 }
