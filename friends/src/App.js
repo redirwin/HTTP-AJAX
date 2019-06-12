@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import DisplayFriends from "./components/DisplayFriends";
-import "./App.css";
+import "./App.scss";
 
 class App extends React.Component {
   render() {
