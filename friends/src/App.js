@@ -2,8 +2,9 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import DisplayFriends from "./components/DisplayFriends";
-import AddFriend from "./components/AddFriend";
+import EditFriend from "./components/EditFriend";
 import "./App.scss";
+import axios from "axios";
 
 class App extends React.Component {
   constructor() {
@@ -14,19 +15,20 @@ class App extends React.Component {
     };
   }
 
-  addFriend = e => {
-    e.preventDefault();
-    console.log("In Add Friend method!");
-  };
+  addFriend = (e, friend) => {};
+
+  editFriend = (e, friend) => {};
+
+  deleteFriend = (e, friend) => {};
 
   render() {
     return (
       <div className="App">
         <Route exact path="/" component={DisplayFriends} />
         <Route
-          path="/addfriend"
+          path="/editfriend"
           render={props => (
-            <AddFriend {...props} activeFriend={this.state.activeFriend} />
+            <EditFriend {...props} activeFriend={this.state.activeFriend} />
           )}
         />
       </div>

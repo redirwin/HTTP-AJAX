@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-class AddFriends extends React.Component {
+class EditFriend extends React.Component {
   state = {
     friend: this.props.activeFriend || {
       name: "",
@@ -31,7 +31,11 @@ class AddFriends extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    alert("submitting!");
+    if (this.props.activeFriend) {
+      this.props.updateFriend(e, this.state.friend);
+    } else {
+      this.props.addItem(e, this.state.friend);
+    }
     this.setState = {
       name: "",
       age: "",
@@ -46,33 +50,35 @@ class AddFriends extends React.Component {
         <NavLink to="/" className="nav-link">
           Home
         </NavLink>
-        <form className="friend-input-form" onSubmit={this.handleSubmit()}>
+        <form className="friend-input-form" onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="name"
             name="nameInput"
-            value={this.props.name}
+            value={this.state.friend.name}
             onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="age"
             name="ageInput"
-            value={this.props.age}
+            value={this.state.friend.age}
             onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="email address"
             name="emailInput"
-            value={this.props.email}
+            value={this.state.friend.email}
             onChange={this.handleChange}
           />
-          <button>Add New Friend</button>
+          <button>{`${
+            this.props.activeFriend ? "Edit" : "Add"
+          } Friend`}</button>
         </form>
       </>
     );
   }
 }
 
-export default AddFriends;
+export default EditFriend;
