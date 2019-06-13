@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+
 import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
@@ -10,21 +10,10 @@ class DisplayFriends extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/friends")
-      .then(response => {
-        this.setState(() => ({ friends: response.data }));
-      })
-      .catch(error => {
-        console.error("Server Error", error);
-      });
-  }
-
   render() {
     return (
       <>
-        <NavLink to="/addfriend" className="nav-link">
+        <NavLink to="/editfriend" className="nav-link">
           Add Friend
         </NavLink>
         <div className="friends-list">

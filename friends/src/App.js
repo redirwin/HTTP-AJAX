@@ -15,6 +15,17 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }
+
   addFriend = (e, friend) => {};
 
   editFriend = (e, friend) => {};
@@ -24,7 +35,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={DisplayFriends} />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <DisplayFriends {...props} friends={this.state.friends} />
+          )}
+        />
         <Route
           path="/editfriend"
           render={props => (

@@ -47,9 +47,6 @@ class EditFriend extends React.Component {
     console.log(this.props);
     return (
       <>
-        <NavLink to="/" className="nav-link">
-          Home
-        </NavLink>
         <form className="friend-input-form" onSubmit={this.handleSubmit}>
           <input
             type="text"
