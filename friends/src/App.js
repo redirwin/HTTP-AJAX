@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   addFriend = newFriend => {
-    // console.log(newFriend);
     axios
       .post("http://localhost:5000/friends", newFriend)
       .then(response => {

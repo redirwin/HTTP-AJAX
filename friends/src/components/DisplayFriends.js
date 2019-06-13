@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
   render() {
-    console.log(this.props.friends);
     return (
       <>
         <NavLink to="/addfriend" className="nav-link">
