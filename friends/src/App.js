@@ -28,13 +28,13 @@ class App extends React.Component {
       });
   }
 
-  addFriend = (e, friend) => {
-    e.preventDefault();
+  addFriend = newFriend => {
+    // console.log(newFriend);
     axios
-      .post("http://localhost:5000/friends", friend)
-      .then(res => {
+      .post("http://localhost:5000/friends", newFriend)
+      .then(response => {
         this.setState({
-          items: res.data
+          friends: response.data
         });
         this.props.history.push("/");
       })
@@ -43,9 +43,9 @@ class App extends React.Component {
       });
   };
 
-  editFriend = (e, friend) => {};
+  // editFriend = (e, friend) => {};
 
-  deleteFriend = (e, friend) => {};
+  // deleteFriend = (e, friend) => {};
 
   render() {
     return (
@@ -59,9 +59,7 @@ class App extends React.Component {
         />
         <Route
           path="/addfriend"
-          render={props => (
-            <AddFriend {...props} friends={this.state.friends} />
-          )}
+          render={props => <AddFriend {...props} addFriend={this.addFriend} />}
         />
         <Route
           path="/editfriend"

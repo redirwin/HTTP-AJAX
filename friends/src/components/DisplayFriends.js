@@ -3,21 +3,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      friends: []
-    };
-  }
-
   render() {
+    console.log(this.props.friends);
     return (
       <>
-        <NavLink to="/editfriend" className="nav-link">
+        <NavLink to="/addfriend" className="nav-link">
           Add Friend
         </NavLink>
         <div className="friends-list">
-          {this.state.friends.map(friend => (
+          {this.props.friends.map(friend => (
             <div key={friend.id} className="friend-card">
               <h2>{friend.name}</h2>
               <p>age: {friend.age}</p>
