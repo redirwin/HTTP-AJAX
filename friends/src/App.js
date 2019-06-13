@@ -3,6 +3,8 @@ import { Route } from "react-router-dom";
 
 import DisplayFriends from "./components/DisplayFriends";
 import EditFriend from "./components/EditFriend";
+import AddFriend from "./components/AddFriend";
+
 import "./App.scss";
 import axios from "axios";
 
@@ -10,8 +12,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeFriend: null,
-      friends: []
+      friends: [],
+      activeFriend: ""
     };
   }
 
@@ -26,7 +28,20 @@ class App extends React.Component {
       });
   }
 
-  addFriend = (e, friend) => {};
+  addFriend = (e, friend) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/friends", friend)
+      .then(res => {
+        this.setState({
+          items: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   editFriend = (e, friend) => {};
 
@@ -40,6 +55,12 @@ class App extends React.Component {
           path="/"
           render={props => (
             <DisplayFriends {...props} friends={this.state.friends} />
+          )}
+        />
+        <Route
+          path="/addfriend"
+          render={props => (
+            <AddFriend {...props} friends={this.state.friends} />
           )}
         />
         <Route

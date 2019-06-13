@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 class EditFriend extends React.Component {
   state = {
@@ -23,9 +22,8 @@ class EditFriend extends React.Component {
 
   handleChange = e => {
     e.preventDefault();
-    let value = e.target.value;
     this.setState({
-      [e.target.name]: value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -44,34 +42,31 @@ class EditFriend extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <>
         <form className="friend-input-form" onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="name"
-            name="nameInput"
+            name="name"
             value={this.state.friend.name}
-            onChange={this.handleChange}
+            onChange={name => this.handleChange(name)}
           />
           <input
             type="text"
             placeholder="age"
-            name="ageInput"
+            name="age"
             value={this.state.friend.age}
             onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="email address"
-            name="emailInput"
+            name="email"
             value={this.state.friend.email}
             onChange={this.handleChange}
           />
-          <button>{`${
-            this.props.activeFriend ? "Edit" : "Add"
-          } Friend`}</button>
+          <button>Edit Friend</button>
         </form>
       </>
     );
