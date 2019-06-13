@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
   constructor(props) {
@@ -24,9 +24,9 @@ class DisplayFriends extends React.Component {
   render() {
     return (
       <>
-        <Link to="/addfriend" className="nav-link">
+        <NavLink to="/addfriend" className="nav-link">
           Add Friend
-        </Link>
+        </NavLink>
         <div className="friends-list">
           {this.state.friends.map(friend => (
             <div key={friend.id} className="friend-card">

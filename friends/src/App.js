@@ -8,7 +8,10 @@ import "./App.scss";
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      activeFriend: null,
+      friends: []
+    };
   }
 
   addFriend = e => {
@@ -20,7 +23,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <Route exact path="/" component={DisplayFriends} />
-        <Route path="/addfriend" render={props => <AddFriend {...props} />} />
+        <Route
+          path="/addfriend"
+          render={props => (
+            <AddFriend {...props} activeFriend={this.state.activeFriend} />
+          )}
+        />
       </div>
     );
   }

@@ -1,14 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class AddFriends extends React.Component {
   state = {
-    name: "",
-    age: "",
-    email: ""
+    friend: this.props.activeFriend || {
+      name: "",
+      age: "",
+      email: ""
+    }
   };
 
-  inputChangeHandler = e => {
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.activeFriend &&
+      prevProps.activeFriend !== this.props.activeFriend
+    ) {
+      this.setState({
+        friend: this.props.activeFriend
+      });
+    }
+  }
+
+  handleChange = e => {
     e.preventDefault();
     let value = e.target.value;
     this.setState({
@@ -16,36 +29,44 @@ class AddFriends extends React.Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    alert("submitting!");
+    this.setState = {
+      name: "",
+      age: "",
+      email: ""
+    };
+  };
+
   render() {
+    console.log(this.props);
     return (
       <>
-        <Link to="/" className="nav-link">
+        <NavLink to="/" className="nav-link">
           Home
-        </Link>
-        <form
-          className="friend-input-form"
-          onSubmit={event => this.props.addFriend(event)}
-        >
+        </NavLink>
+        <form className="friend-input-form" onSubmit={this.handleSubmit()}>
           <input
             type="text"
             placeholder="name"
             name="nameInput"
             value={this.props.name}
-            onChange={event => this.inputChangeHandler(event)}
+            onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="age"
             name="ageInput"
             value={this.props.age}
-            onChange={event => this.inputChangeHandler(event)}
+            onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="email address"
             name="emailInput"
             value={this.props.email}
-            onChange={event => this.inputChangeHandler(event)}
+            onChange={this.handleChange}
           />
           <button>Add New Friend</button>
         </form>
