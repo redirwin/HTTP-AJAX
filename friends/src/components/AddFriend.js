@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const AddFriends = props => {
   return (
     <>
-      <Link to="/">Home</Link>
+      <Link to="/" className="nav-link">
+        Home
+      </Link>
       <form
         className="friend-input-form"
         onSubmit={event => props.addFriend(event)}

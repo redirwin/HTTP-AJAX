@@ -22,11 +22,11 @@ class DisplayFriends extends React.Component {
   }
 
   render() {
-    console.log(this.state.friends);
-
     return (
       <>
-        <Link to="/addfriend">Add Friend</Link>
+        <Link to="/addfriend" className="nav-link">
+          Add Friend
+        </Link>
         <div className="friends-list">
           {this.state.friends.map(friend => (
             <div key={friend.id} className="friend-card">

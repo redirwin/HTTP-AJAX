@@ -4,20 +4,17 @@
   max-width: 900px;
   padding: 5% 0;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 
-  .header {
-    padding: 1%;
-    display: flex;
-    justify-content: flex-start;
-
-    a {
-      text-decoration: none;
-      margin-right: 2%;
-    }
+  .nav-link {
+    text-decoration: none;
+    margin-right: 2%;
+    // border: 1px solid red;
+    align-self: flex-start;
   }
 
   .friends-list {
-    // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -33,6 +30,23 @@
       p {
         line-height: 0.75;
       }
+    }
+  }
+
+  .friend-input-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 5% auto;
+
+    input,
+    button {
+      padding: 1%;
+      margin-top: 1%;
+    }
+
+    input {
+      // border: 1px solid grey;
     }
   }
 }
