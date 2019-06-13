@@ -11,13 +11,6 @@ class App extends React.Component {
     this.state = {};
   }
 
-  inputChangeHandler = e => {
-    e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
   addFriend = e => {
     e.preventDefault();
     console.log("In Add Friend method!");
@@ -27,15 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Route exact path="/" component={DisplayFriends} />
-        <Route
-          path="/addfriend"
-          render={props => (
-            <AddFriend
-              {...props}
-              inputChangeHandler={this.inputChangeHandler}
-            />
-          )}
-        />
+        <Route path="/addfriend" render={props => <AddFriend {...props} />} />
       </div>
     );
   }
