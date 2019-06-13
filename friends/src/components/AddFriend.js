@@ -2,10 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class AddFriends extends React.Component {
+  state = {
+    name: "",
+    age: "",
+    email: ""
+  };
+
   inputChangeHandler = e => {
     e.preventDefault();
+    let value = e.target.value;
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     });
   };
 
