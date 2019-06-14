@@ -35,8 +35,8 @@ class DisplayFriends extends React.Component {
               <p>age: {friend.age}</p>
               <p>email: {friend.email}</p>
               <div className="card-edit-links">
-                <NavLink to="/editfriend">Edit</NavLink>
-                <NavLink>Delete</NavLink>
+                <button>Edit</button>
+                <button>Delete</button>
               </div>
             </div>
           ))}

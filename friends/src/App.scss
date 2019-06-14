@@ -44,11 +44,11 @@
         justify-content: center;
         margin-top: 5%;
 
-        a {
+        button {
           &:first-of-type {
-            margin-right: 10%;
+            margin-right: 5%;
           }
-          text-decoration: none;
+          width: 30%;
         }
       }
     }
