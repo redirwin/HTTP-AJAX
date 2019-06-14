@@ -51,7 +51,24 @@ class App extends React.Component {
       });
   };
 
-  // deleteFriend = (e, friend) => {};
+  deleteFriend = (e, deletedFriend) => {
+    e.preventDefault();
+    axios
+      .delete(
+        `http://localhost:5000/friends/${deletedFriend.id}`,
+        deletedFriend
+      )
+      .then(res => {
+        this.setState({
+          activeFriend: "",
+          friends: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -60,14 +77,20 @@ class App extends React.Component {
           exact
           path="/"
           render={props => (
-            <DisplayFriends {...props} setEditForm={this.setEditForm} />
+            <DisplayFriends
+              {...props}
+              setEditForm={this.setEditForm}
+              deleteFriend={this.deleteFriend}
+            />
           )}
         />
         <Route
+          exact
           path="/addfriend"
           render={props => <AddFriend {...props} addFriend={this.addFriend} />}
         />
         <Route
+          exact
           path="/editfriend/:id"
           render={props => (
             <EditFriend

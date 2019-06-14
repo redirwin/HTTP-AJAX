@@ -22,6 +22,17 @@ class DisplayFriends extends React.Component {
       });
   }
 
+  componentDidUpdate() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }
+
   render() {
     return (
       <>
@@ -38,7 +49,9 @@ class DisplayFriends extends React.Component {
                 <button onClick={e => this.props.setEditForm(e, friend)}>
                   Edit
                 </button>
-                <button>Delete</button>
+                <button onClick={e => this.props.deleteFriend(e, friend)}>
+                  Delete
+                </button>
               </div>
             </div>
           ))}
