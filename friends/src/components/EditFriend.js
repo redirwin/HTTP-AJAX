@@ -24,7 +24,7 @@ class EditFriend extends React.Component {
       email: this.state.activeFriend.email,
       id: this.state.activeFriend.id
     };
-    this.props.editFriend(editedFriend);
+    this.props.editFriend(e, editedFriend);
   };
 
   render() {

@@ -33,6 +33,8 @@ class DisplayFriends extends React.Component {
       });
   }
 
+  componentWillUnmount() {}
+
   render() {
     return (
       <>
