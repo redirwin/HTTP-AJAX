@@ -18,6 +18,13 @@ class EditFriend extends React.Component {
 
   handleEditSubmit = e => {
     e.preventDefault();
+    const editedFriend = {
+      name: this.state.activeFriend.name,
+      age: this.state.activeFriend.age,
+      email: this.state.activeFriend.email,
+      id: this.state.activeFriend.id
+    };
+    this.props.editFriend(editedFriend);
   };
 
   render() {
@@ -25,7 +32,7 @@ class EditFriend extends React.Component {
       <>
         <form
           className="friend-input-form"
-          onSubmit={e => this.handleSubmit(e)}
+          onSubmit={e => this.handleEditSubmit(e)}
         >
           <input
             type="text"

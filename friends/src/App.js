@@ -28,12 +28,27 @@ class App extends React.Component {
   };
 
   setEditForm = (e, friend) => {
-    // console.log(friend);
     e.preventDefault();
     this.setState({
       activeFriend: friend
     });
-    this.props.history.push(`/editfriend/${friend.id}/${friend.name}`);
+    this.props.history.push(`/editfriend/${friend.id}`);
+  };
+
+  editFriend = (e, editedFriend) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${editedFriend.id}`, editedFriend)
+      .then(res => {
+        this.setState({
+          activeFriend: "",
+          friends: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   // deleteFriend = (e, friend) => {};
@@ -53,9 +68,13 @@ class App extends React.Component {
           render={props => <AddFriend {...props} addFriend={this.addFriend} />}
         />
         <Route
-          path="/editfriend/:id/:name"
+          path="/editfriend/:id"
           render={props => (
-            <EditFriend {...props} activeFriend={this.state.activeFriend} />
+            <EditFriend
+              {...props}
+              activeFriend={this.state.activeFriend}
+              editFriend={this.editFriend}
+            />
           )}
         />
       </div>
