@@ -1,33 +1,14 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import axios from "axios";
 
 import DisplayFriends from "./components/DisplayFriends";
 import EditFriend from "./components/EditFriend";
 import AddFriend from "./components/AddFriend";
 
 import "./App.scss";
-import axios from "axios";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: [],
-      activeFriend: ""
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/friends")
-      .then(response => {
-        this.setState(() => ({ friends: response.data }));
-      })
-      .catch(error => {
-        console.error("Server Error", error);
-      });
-  }
-
   addFriend = newFriend => {
     axios
       .post("http://localhost:5000/friends", newFriend)
@@ -49,13 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route
-          exact
-          path="/"
-          render={props => (
-            <DisplayFriends {...props} friends={this.state.friends} />
-          )}
-        />
+        <Route exact path="/" render={props => <DisplayFriends {...props} />} />
         <Route
           path="/addfriend"
           render={props => <AddFriend {...props} addFriend={this.addFriend} />}

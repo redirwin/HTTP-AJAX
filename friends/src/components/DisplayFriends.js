@@ -1,16 +1,35 @@
 import React from "react";
+import axios from "axios";
 
 import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: []
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }
+
   render() {
     return (
       <>
-        <NavLink to="/addfriend" className="nav-link">
-          Add Friend
-        </NavLink>
         <div className="friends-list">
-          {this.props.friends.map(friend => (
+          <NavLink to="/addfriend" className="nav-link friend-card">
+            <h2>Add Friend</h2>
+          </NavLink>
+          {this.state.friends.map(friend => (
             <div key={friend.id} className="friend-card">
               <h2>{friend.name}</h2>
               <p>age: {friend.age}</p>

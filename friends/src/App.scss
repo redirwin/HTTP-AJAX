@@ -9,26 +9,30 @@
 
   .nav-link {
     text-decoration: none;
-    margin-right: 2%;
-    // border: 1px solid red;
-    align-self: flex-start;
   }
 
   .friends-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: flex-start;
 
     .friend-card {
       border: 1px solid black;
       border-radius: 5px;
       width: 100%;
       max-width: 300px;
+      height: 150px;
       margin: 5%;
       box-shadow: 10px 10px 17px -12px rgba(0, 0, 0, 0.75);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-      p {
-        line-height: 0.75;
+      p,
+      h2 {
+        padding: 0;
+        margin: 0;
       }
     }
   }
