@@ -2,71 +2,53 @@ import React from "react";
 
 class EditFriend extends React.Component {
   state = {
-    friend: this.props.activeFriend || {
-      name: "",
-      age: "",
-      email: ""
-    }
+    activeFriend: this.props.activeFriend
   };
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.activeFriend &&
-      prevProps.activeFriend !== this.props.activeFriend
-    ) {
-      this.setState({
-        friend: this.props.activeFriend
-      });
-    }
-  }
-
-  handleChange = e => {
+  handleEditChange = e => {
     e.preventDefault();
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    e.persist();
+    this.setState(prevState => ({
+      activeFriend: {
+        ...prevState.activeFriend,
+        [e.target.name]: e.target.value
+      }
+    }));
   };
 
-  handleSubmit = e => {
+  handleEditSubmit = e => {
     e.preventDefault();
-    if (this.props.activeFriend) {
-      this.props.updateFriend(e, this.state.friend);
-    } else {
-      this.props.addItem(e, this.state.friend);
-    }
-    this.setState = {
-      name: "",
-      age: "",
-      email: ""
-    };
   };
 
   render() {
     return (
       <>
-        <form className="friend-input-form" onSubmit={this.handleSubmit}>
+        <form
+          className="friend-input-form"
+          onSubmit={e => this.handleSubmit(e)}
+        >
           <input
             type="text"
             placeholder="name"
             name="name"
-            value={this.state.friend.name}
-            onChange={name => this.handleChange(name)}
+            value={this.state.activeFriend.name}
+            onChange={this.handleEditChange}
           />
           <input
             type="text"
             placeholder="age"
             name="age"
-            value={this.state.friend.age}
-            onChange={this.handleChange}
+            value={this.state.activeFriend.age}
+            onChange={this.handleEditChange}
           />
           <input
             type="text"
             placeholder="email address"
             name="email"
-            value={this.state.friend.email}
-            onChange={this.handleChange}
+            value={this.state.activeFriend.email}
+            onChange={this.handleEditChange}
           />
-          <button>Edit Friend</button>
+          <button>Save Changes</button>
         </form>
       </>
     );

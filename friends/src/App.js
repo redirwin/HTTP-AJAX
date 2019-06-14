@@ -28,12 +28,12 @@ class App extends React.Component {
   };
 
   setEditForm = (e, friend) => {
-    console.log(friend);
+    // console.log(friend);
     e.preventDefault();
     this.setState({
       activeFriend: friend
     });
-    this.props.history.push("/editfriend");
+    this.props.history.push(`/editfriend/${friend.id}/${friend.name}`);
   };
 
   // deleteFriend = (e, friend) => {};
@@ -52,7 +52,12 @@ class App extends React.Component {
           path="/addfriend"
           render={props => <AddFriend {...props} addFriend={this.addFriend} />}
         />
-        <Route path="/editfriend" render={props => <EditFriend {...props} />} />
+        <Route
+          path="/editfriend/:id/:name"
+          render={props => (
+            <EditFriend {...props} activeFriend={this.state.activeFriend} />
+          )}
+        />
       </div>
     );
   }
