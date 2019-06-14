@@ -4,8 +4,8 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 class DisplayFriends extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: []
     };
@@ -35,7 +35,9 @@ class DisplayFriends extends React.Component {
               <p>age: {friend.age}</p>
               <p>email: {friend.email}</p>
               <div className="card-edit-links">
-                <button>Edit</button>
+                <button onClick={e => this.props.setEditForm(e, friend)}>
+                  Edit
+                </button>
                 <button>Delete</button>
               </div>
             </div>
